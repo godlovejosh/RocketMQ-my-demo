@@ -5,3 +5,4 @@
 * 无需写main方法
 * getDefaultParameters 接收参数
 * SampleResult将返回值作为结果出来
+* 每次更改完后重新编译项目,把新的jar包拷贝到JMeter的lib/ext目录下覆盖旧的,同时JMeter要重新启动,重新添加java请求

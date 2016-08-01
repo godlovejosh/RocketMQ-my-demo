@@ -1,0 +1,16 @@
+n                                                                                                                                               
+.metadata
+*/bin
+*/.project
+*/.classpath
+*/target
+*/.settings
+*/logs
+target
+*/target
+.settings
+.project
+.DS_Store
+.idea/
+*.iml
+.classpath
