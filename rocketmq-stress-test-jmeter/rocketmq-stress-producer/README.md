@@ -38,3 +38,61 @@
     jmeter.save.saveservice.timestamp_format = ms
     # Or the following would also be suitable
     jmeter.save.saveservice.timestamp_format = yyyy/MM/dd HH:mm:ss
+
+
+
+* 4核 + 16G + SSD硬盘 (IO读写速度很重要,不使用外网IP测试所以与带宽没有关系)
+* 测试结果参考: 单机测试：TPS 3W+ 
+
+* 多网卡问题:虽然生产者指定了nameserver的内网IP,但是broker配置文件中如果没有指定brokerIP为内网IP,broker很可能随机连接一块网卡,导致broker走的是外网
+
+
+## 参考脚本
+    #!/bin/bash
+    #
+    
+    PROG_NAME=$0
+    ACTION=$1
+    CPATH=/data/source/RocketMQ-test-report/lib
+    LOG_HOME=$HOME/logs/rocketmqlogs
+    
+    usage() {
+        echo "Usage: $PROG_NAME {producer|consumer}"
+        exit 1;
+    }
+    
+    producer_start() {
+        nohup /data/source/apache-jmeter-3.0/bin/jmeter -n -t /data/source/RocketMQ-test-report/scripts/RocketMQ_test_plan.jmx -l /data/source/RocketMQ-test-report/scripts/rocket-listener.csv > $LOG_HOME/application/producer.out 2>&1 &
+    }
+    
+    consumer_start() {
+        nohup java -classpath $CPATH/rocketmq-client-3.4.6.jar:$CPATH/rocketmq-remoting-3.4.6.jar:$CPATH/netty-all-4.0.29.Final.jar:$CPATH/rocketmq-common-3.4.6.jar:$CPATH/fastjson-1.2.3.jar:$CPATH/rocketmq-stress-consumer-1.0-SNAPSHOT.jar:$CPATH/slf4j-api-1.7.5.jar:$CPATH/slf4j-log4j12-1.7.5.jar:$CPATH/log4j-1.2.17.jar:$CPATH/mysql-connector-java-6.0.3.jar:. com.alibaba.rocketmq.Consumer > $LOG_HOME/application/consumer.out 2>&1 &
+    }
+    
+    case "$ACTION" in
+        producer)
+            producer_start
+        ;;
+        consumer)
+            consumer_start
+        ;;
+        *)
+            usage
+        ;;
+    esac
+    
+    exit 0
+    
+
+## 监控
+* https://github.com/rocketmq/rocketmq-console
+* top  shift+P按CPU排序,shift+M按内存排序
+* jps  查看java进程
+* free -m 空闲内存
+* df -lh  磁盘空间
+* iptraf  tcp监控  sudo yum install -y iptraf
+
+
+## 环境优化
+* sudo vim /etc/sysctl.conf  优化系统 线程数、tcp数、文件数...
+* jmeter 和 RocketMQ的 jvm 内存分配优化
