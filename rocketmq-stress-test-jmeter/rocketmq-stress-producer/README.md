@@ -44,8 +44,14 @@
 * 4核 + 16G + SSD硬盘 (IO读写速度很重要,不使用外网IP测试所以与带宽没有关系)
 * 测试结果参考: 单机测试：TPS 3W+ 
 
-* 多网卡问题:虽然生产者指定了nameserver的内网IP,但是broker配置文件中如果没有指定brokerIP为内网IP,broker很可能随机连接一块网卡,导致broker走的是外网
-
+* TPS上不去的问题之一:多网卡问题:虽然生产者指定了nameserver的内网IP,但是broker配置文件中如果没有指定brokerIP为内网IP,broker很可能随机连接一块网卡,导致broker走的是外网
+* TPS上不去的问题之二:同步刷盘与异步刷盘
+    
+    
+    #brokerRole=ASYNC_MASTER
+    #flushDiskType=SYNC_FLUSH
+    brokerRole=SYNC_MASTER
+    flushDiskType=ASYNC_FLUSH
 
 ## 参考脚本
     #!/bin/bash
