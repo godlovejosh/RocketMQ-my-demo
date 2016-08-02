@@ -48,8 +48,6 @@
 * TPS上不去的问题之二:同步刷盘与异步刷盘
     
     
-    #brokerRole=ASYNC_MASTER
-    #flushDiskType=SYNC_FLUSH
     brokerRole=SYNC_MASTER
     flushDiskType=ASYNC_FLUSH
 
