@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration >
+    <classPathEntry location="C:\Users\think\.m2\repository\mysql\mysql-connector-java\5.1.21\mysql-connector-java-5.1.21.jar"/>
+  <context id="context1" >
+    <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost/w500midb" userId="root"/>
+    <javaModelGenerator targetPackage="com.wbm.carriage.tp.itemGroup.api.model" targetProject="E:\javaworkspace\Project\carriage-himalaya\himalaya-api\src\test\resources" />
+    <sqlMapGenerator targetPackage="com.wbm.carriage.tp.itemGroup.dao.ibatis" targetProject="E:\javaworkspace\Project\carriage-himalaya\himalaya-api\src\test\resources" />
+    <javaClientGenerator targetPackage="com.wbm.carriage.tp.itemGroup.dao" targetProject="E:\javaworkspace\Project\carriage-himalaya\himalaya-api\src\test\resources" type="XMLMAPPER" />
+    <table tableName="cp_item_group" domainObjectName="ItemGroupDO"></table>
+  </context>
+
+</generatorConfiguration>

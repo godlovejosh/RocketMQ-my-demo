@@ -15,7 +15,7 @@ public class Consumer {
     public static void main(String[] args) throws InterruptedException, MQClientException {
 
         DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("PushConsumer");
-        String namesrvAddr = "127.0.0.1:9876";
+        String namesrvAddr = "114.55.108.114:9876";
         consumer.setNamesrvAddr(namesrvAddr);
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.subscribe("TopicTest", "*");

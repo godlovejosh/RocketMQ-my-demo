@@ -8,27 +8,38 @@
     <groupId>com.alibaba.rocketmq.my.demo</groupId>
     <artifactId>rocketmq-stress-producer</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>rocketmq-stress-producer</name>
+    <name>Rocketmq Stress Producer</name>
     <packaging>jar</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <rocketmq_version>3.4.6</rocketmq_version>
+        <jmeter_version>3.0</jmeter_version>
+    </properties>
+
     <dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.3</version>
+        </dependency>
         <!-- ================================================= -->
         <!-- RocketMQ -->
         <!-- ================================================= -->
         <dependency>
             <groupId>com.alibaba.rocketmq</groupId>
             <artifactId>rocketmq-client</artifactId>
-            <version>3.4.6</version>
+            <version>${rocketmq_version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.rocketmq</groupId>
             <artifactId>rocketmq-common</artifactId>
-            <version>3.4.6</version>
+            <version>${rocketmq_version}</version>
         </dependency>
         <dependency>
             <groupId>com.alibaba.rocketmq</groupId>
             <artifactId>rocketmq-remoting</artifactId>
-            <version>3.4.6</version>
+            <version>${rocketmq_version}</version>
         </dependency>
         <dependency>
             <groupId>io.netty</groupId>
@@ -46,18 +57,26 @@
         <dependency>
             <groupId>org.apache.jmeter</groupId>
             <artifactId>ApacheJMeter_core</artifactId>
-            <version>3.0</version>
+            <version>${jmeter_version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.jmeter</groupId>
             <artifactId>ApacheJMeter_java</artifactId>
-            <version>3.0</version>
-        </dependency>
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.3</version>
+            <version>${jmeter_version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

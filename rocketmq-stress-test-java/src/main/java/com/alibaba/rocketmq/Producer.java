@@ -42,7 +42,7 @@ public class Producer extends AbstractJavaSamplerClient {
 
         if (count == 0) {
             synchronized (javaSamplerContext) {
-                String namesrvAddr = "127.0.0.1:9876";
+                String namesrvAddr = "114.55.108.114:9876";
                 producer.setNamesrvAddr(namesrvAddr);
                 try {
                     producer.start();
