@@ -17,7 +17,7 @@ import java.util.List;
 public class Consumer {
 
     /** nameServerIP地址和端口号 */
-    private static String nameServer = "127.0.0.1:9876";
+    private static String nameServer = "10.230.27.185:9876";
 
     /** 消费者分组 */
     private static String producerGroup = "producer0729";
